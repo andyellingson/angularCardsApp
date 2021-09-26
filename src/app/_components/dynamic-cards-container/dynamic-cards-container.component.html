@@ -1,0 +1,99 @@
+<p-toolbar>
+    <div class="ui-toolbar-group-left">
+        <div style="display: flex; justify-content: right;">
+            <label class="title2" >Black Jack</label> 
+                <div style="padding-left: 30px;">
+                    <div style="width: 100px; text-align:right;">
+                        <label class="bankAmount" >${{Bank}}</label> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui-toolbar-group-right">
+    </div>
+</p-toolbar>
+<div cdkDropListGroup style="margin:auto">
+    <div style="display: flex;" class="center">
+        <div>
+            <div class="center">
+                <label style="color: yellow; font-size: 15px;">DEALER STANDS ON ALL 17s</label>
+            </div>
+            <div flex layout="row" layout-align="center center">
+                <div class="cardRowDealer" id="dealer">
+                    <div style="display: flex;">
+                        <div class="sideBar">
+                            <label [hidden]="this.Bet === 0"  style="font-size: 15px; color: yellow;">{{DealerTotal}}</label>  
+                        </div>                    
+                        <div #dealerCardContainer></div> 
+                    </div>
+                </div>
+                <div class="cardRow" id="player">
+                    <div style="display: flex;">
+                        <div class="sideBar">
+                            <label [hidden]="this.Bet === 0" style="font-size: 15px; color: yellow;">{{Total}}</label>
+                        </div>  
+                        <div #playerCardContainer></div>    
+                    </div>
+                </div>
+            </div>
+            <!-- <div flex layout="row" layout-align="center center">
+                <div cdkDropList 
+                    class="cardRowDealer" id="dealer"
+                    (cdkDropListDropped)="drop($event)"
+                    [cdkDropListData]="theDeck">
+                    <div style="display: flex;">
+                        <div class="sideBar">
+                            <label [hidden]="this.Bet === 0" style="font-size: 15px; color: yellow;">{{DealerTotal}}</label>  
+                        </div>                    
+                        <div #dealerCardContainer></div> 
+                    </div>
+                </div>
+                <div cdkDropList 
+                    class="cardRow" id="player"
+                    (cdkDropListDropped)="drop($event)" 
+                    [cdkDropListData]="playerCards">
+                    <div style="display: flex;">
+                        <div class="sideBar">
+                            <label [hidden]="this.Bet === 0" style="font-size: 15px; color: yellow;">{{Total}}</label>
+                        </div>  
+                        <div #playerCardContainer></div>    
+                    </div>
+                </div>
+            </div> -->
+            <div style="display: flex;">
+                <div class="imgHolder" tooltip="Bet $1" placement="top" show-delay="500">
+                    <img class="chip" src="./assets/img/chipWhite.png" (click)="BetMoney(1)">
+                    <span style=" pointer-events: none;">1</span>
+                </div>
+                <div class="imgHolder" tooltip="Bet $5" placement="top" show-delay="500">
+                    <img class="chip" src="./assets/img/chipBlue.png" (click)="BetMoney(5)">
+                    <span style=" pointer-events: none;">5</span>
+                </div>
+                <div class="imgHolder2" tooltip="Bet $25" placement="top" show-delay="500">
+                    <img class="chip" src="./assets/img/chipRed.png" (click)="BetMoney(25)">
+                    <span style=" pointer-events: none;">25</span>
+                </div>
+                <div class="imgHolder2" tooltip="Bet $50" placement="top" show-delay="500">
+                    <img class="chip" src="./assets/img/chipBlack.png" (click)="BetMoney(50)" >
+                    <span style=" pointer-events: none;" >50</span>
+                </div>
+                <div style="padding-top:5px; padding-left: 10px; font-size: 30px; color: yellow;">
+                    <label [hidden]="!IsBet()">${{Bet}}</label>  
+                    <label [hidden]="IsBet()">$Bet</label>  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="center">
+        <button style="margin:2px;" pButton type="button" class="myButton ui-button-rounded ui-button-info" [disabled]="!IsBet() || !gameOver || !CanPlay()" label="Play" (click)="Play()"></button>
+        <button style="margin:2px;" pButton type="button" class="myButton ui-button-rounded ui-button-info" [disabled]="!IsBet() || gameOver || isDealersTurn" label="Stand" (click)="Stay()"></button>
+        <button style="margin:2px;" pButton type="button" class="myButton ui-button-rounded ui-button-info" [disabled]="!IsBet() || gameOver || isDealersTurn"  label="Hit Me" (click)="HitMe()"></button>
+    </div>
+    <div class="center">
+        <button style="margin:2px;" pButton type="button" class="myButton ui-button-rounded ui-button-info" [disabled]="CanDouble()"  label="Double" (click)="BetMoney(Bet, true)"></button>
+        <button style="margin:2px;" pButton type="button" class="myButton ui-button-rounded ui-button-info" [disabled]="!IsBet() || !gameOver || !isDealersTurn" label="Clear Bet" (click)="ClearBet()"></button>
+    </div>  
+<p-toast position="top-center"></p-toast>
+   
