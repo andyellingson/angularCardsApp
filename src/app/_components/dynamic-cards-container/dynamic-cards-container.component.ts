@@ -43,7 +43,7 @@ export class DynamicCardsContainerComponent implements OnInit {
   }
 
   ngOnInit(){
-        this.Bank = this.GetBankAmount();
+    this.Bank = this.GetBankAmount();
   }
 
   createPlayerCardComponent(cardIndex: number) {
