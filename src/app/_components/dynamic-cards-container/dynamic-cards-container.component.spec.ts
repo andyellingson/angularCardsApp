@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { DynamicCardsContainerComponent } from './dynamic-cards-container.component';
 
@@ -6,7 +6,7 @@ describe('DynamicCardsContainerComponent', () => {
   let component: DynamicCardsContainerComponent;
   let fixture: ComponentFixture<DynamicCardsContainerComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DynamicCardsContainerComponent ]
     })
